@@ -2,6 +2,11 @@ from django.contrib import admin
 
 from .models import Article, Category
 
+# Admin Site header
+
+admin.site.site_header = 'وبلاگ'
+
+
 def make_published(modeladmin, request, queryset):
         rows_updated = queryset.update(status='p')
         if rows_updated == 1:
@@ -44,7 +49,7 @@ class ArticleAdmin(admin.ModelAdmin):
     actions = [make_published, make_draft]
 
     def category_to_string(self, obj):
-       return ", ".join([category.title for category in obj.category_published()])
+       return ", ".join([category.title for category in obj.category.active()])
     category_to_string.short_description = 'دسته بندی'
 
 class CategoryAdmin(admin.ModelAdmin):
