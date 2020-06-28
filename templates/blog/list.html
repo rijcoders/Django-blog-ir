@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>RIJ Limmited Company</h1>
+            <h1>RIJ</h1>
           </div>
         </div>
       </div>
@@ -26,20 +26,23 @@
 
         {% for article in object_list %}
           <div class="post-preview">
-            <a href="{% url 'blog:article-detail' article.slug %}">
+            <a href="{% url 'blog:detail' article.slug %}">
               <h2 class="post-title">
                 {{article.title}}
+                {% if article.is_special %}
+                  <span class="badge badge-danger" style="font-size: 14px;">ویژه</span>
+                {% endif %}
               </h2>
               <h3 class="post-subtitle">
                 {{article.description|striptags|truncatewords:30}}
               </h3>
             </a>
             <p class="post-meta">نوشته شده توسط
-              <a href="">{{article.author.get_full_name}}</a>
+              <a href="{% url 'blog:author' article.author %}">{{article.author}}</a>
               {{article.jpublish}}</p>
             <div>
               {% for cat in article.category.active %}
-                <a href="{% url 'blog:category-list' cat.slug %}">#{{cat.title}}</a>
+                <a href="{% url 'blog:category' cat.slug %}">#{{cat.title}}</a>
               {% endfor %}
             </div>
           </div>

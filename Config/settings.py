@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'account.apps.AccountConfig',
 
+    'widget_tweaks',
+    'django_extensions'
+
+
+
+
 ]
 
 MIDDLEWARE = [
@@ -134,3 +140,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'account.User'
+
+LOGIN_REDIRECT_URL = 'account:home'
+LOGIN_URL = 'account:login'

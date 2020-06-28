@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.text import slugify
 from django.urls import reverse
+# from django.contrib.auth.models import User
 
 from account.models import User
 from extensions.utils import jalali_converter
@@ -22,7 +23,7 @@ class ArticleManager(models.Manager):
 class Article(models.Model):
 
     title = models.CharField(max_length=100,verbose_name='عنوان مقاله')
-    author = models.ForeignKey(User, on_delete=models.SET_NULL,    null=True, verbose_name='نویسنده'
+    author = models.ForeignKey(User, on_delete=models.SET_NULL,    null=True, verbose_name='نویسنده', related_name='articles'
     )
     slug = models.SlugField(max_length=100, blank=True, null=True, verbose_name='تدرس مقاله')
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='دسته بندی')
