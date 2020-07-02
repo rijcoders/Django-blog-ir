@@ -21,7 +21,7 @@ class ArticleDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
-    paginate_by = 3
+    paginate_by = 2
     template_name = 'blog/category_list.html'
 
     def get_queryset(self):
@@ -37,7 +37,7 @@ class CategoryList(ListView):
 
 
 class AuthorList(ListView):
-	paginate_by = 5
+	paginate_by = 2
 	template_name = 'blog/author_list.html'
 
 	def get_queryset(self):

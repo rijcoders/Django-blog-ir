@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
 
     'widget_tweaks',
-    'django_extensions'
+    'django_extensions',
+    'crispy_forms'
 
 
 

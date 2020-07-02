@@ -25,7 +25,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100,verbose_name='عنوان مقاله')
     author = models.ForeignKey(User, on_delete=models.SET_NULL,    null=True, verbose_name='نویسنده', related_name='articles'
     )
-    slug = models.SlugField(max_length=100, blank=True, null=True, verbose_name='تدرس مقاله')
+    slug = models.SlugField(max_length=100, blank=True, null=True, verbose_name='ادرس مقاله')
     category = models.ManyToManyField('Category', related_name='articles', verbose_name='دسته بندی')
     description = models.TextField(verbose_name='محتوا')
     thumbnail = models.ImageField(upload_to='images',verbose_name='تصویر مقاله')
@@ -47,6 +47,10 @@ class Article(models.Model):
             self.slug = slugify(self.title)
         super(Article,self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("account:home")
+    
+
     def get_article_url(self):
         return reverse('blog:detail', kwargs={'slug':self.slug})
 
@@ -59,6 +63,12 @@ class Article(models.Model):
     def thumbnail_tag(self):
         return format_html("<img width=100 height=75 style='border-radius: 5px;' src='{}'>".format(self.thumbnail.url))
     thumbnail_tag.short_description = "عکس"	
+
+
+    def category_to_string(self):
+       return ", ".join([category.title for category in self.category.active()])
+    category_to_string.short_description = 'دسته بندی'
+
 
 
 
@@ -94,3 +104,5 @@ class Category(models.Model):
         
     def __str__(self):
         return self.title
+
+    
