@@ -38,22 +38,22 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{% url 'account:home' %}" class='nav-link'>
+                  {% comment %} <a href="{% url 'account:home' %}" class='nav-link'>
                     لیست مقالات
-                  </a>
-                  {% comment %} {% link request 'home' 'لیست مقالات' 'fa-list' %} {% endcomment %}
+                  </a> {% endcomment %}
+                  {% link request 'home' 'لیست مقالات' 'fa-list' %}
                 </li>
                 <li class="nav-item">
                 <a href="{% url 'account:article-create' %}" class='nav-link'>
                     افزودن مقاله
                   </a>
-                  {% comment %} {% link request 'article-create' 'افزودن مقاله' 'fa-edit' %} {% endcomment %}
+                  {% link request 'article-create' 'افزودن مقاله' 'fa-edit' %}
                 </li>
               </ul>
             </li>
           {% endif %}
           <li class="nav-item">
-            {% comment %} {% link request 'profile' 'پروفایل' 'fas fa-th' %} {% endcomment %}
+            {% comment %} {% link request 'profile' 'پروفایل' 'fas fa-th' %}  {% endcomment %}
           </li>
         </ul>
       </nav>

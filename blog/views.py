@@ -18,6 +18,11 @@ class ArticleDetail(DetailView):
 		slug = self.kwargs.get('slug')
 		return get_object_or_404(Article.objects.published(), slug=slug)
 
+class ArticlePreview(DetailView):
+	def get_object(self):
+		pk = self.kwargs.get('pk')
+		return get_object_or_404(Article, pk=pk)
+
 
 class CategoryList(ListView):
     model = Category

@@ -29,7 +29,7 @@
                         <tr>
                           <td>
                             {% if article.status in 'bd'|make_list or user.is_superuser %}       
-                              {% comment %} <a href="{% url 'account:article-update' article.pk %}">{{article.title}}</a> {% endcomment %}
+                              <a href="{% url 'account:article-update' article.pk %}">{{article.title}}</a>
                             {% else %}
                               {{article.title}}
                             {% endif %}
@@ -65,7 +65,7 @@
                             {% endif %}
 
                             {% if user.is_superuser %}
-                              {% comment %} <a class="badge text-danger" href="{% url 'account:article-delete' article.pk %}">حذف</a> {% endcomment %}
+                              <a class="badge text-danger" href="{% url 'account:article-delete' article.pk %}">حذف</a>
                               {% endif %}
                           </td>
                         </tr>

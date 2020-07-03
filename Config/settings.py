@@ -144,3 +144,4 @@ AUTH_USER_MODEL = 'account.User'
 
 LOGIN_REDIRECT_URL = 'account:home'
 LOGIN_URL = 'account:login'
+LOGOUT_REDIRECT_URL = 'account:login'
