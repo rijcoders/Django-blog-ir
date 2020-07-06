@@ -8,11 +8,13 @@ from django.views.generic import (
 from django.urls import reverse_lazy
 
 from blog.models import Category, Article
+from .models import User
+
 from .mixins import (
     FieldMixin, FormValidMixin,
     AuthorAccessMixin
-
 )
+from .forms import ProfileForm
 
 
 class ArticleList(LoginRequiredMixin, ListView):
@@ -36,3 +38,12 @@ class ArticleDelete(DeleteView):
     model = Article
     template_name = 'registration/article_confirm_delete.html'
     success_url = reverse_lazy("account:home")
+
+class Profile(UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = 'registration/profile.html'
+    success_url = reverse_lazy("account:profile")
+
+    def get_object(self):
+        return User.objects.get(pk = self.request.user.pk)

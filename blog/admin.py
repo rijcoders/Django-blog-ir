@@ -30,7 +30,7 @@ make_draft.short_description = "پیش‌نویس شدن مقالات انتخا
 class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         'title','thumbnail_tag', 'slug',
-        'author','jpublish'
+        'author','jpublish', 'is_special'
         ,'status', 'category_to_string',
         
     )

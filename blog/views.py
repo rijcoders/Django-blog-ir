@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 
 from account.models import User
 from .models import Article, Category
+from account.mixins import AuthorAccessMixin
 
 class ArticleList(ListView):
     # model = Article
@@ -18,7 +19,7 @@ class ArticleDetail(DetailView):
 		slug = self.kwargs.get('slug')
 		return get_object_or_404(Article.objects.published(), slug=slug)
 
-class ArticlePreview(DetailView):
+class ArticlePreview(AuthorAccessMixin, DetailView):
 	def get_object(self):
 		pk = self.kwargs.get('pk')
 		return get_object_or_404(Article, pk=pk)
